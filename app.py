@@ -9,6 +9,10 @@ from database import crear_tablas
 app = Flask(__name__)
 app.secret_key = "gp-tapiceria"
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+DATABASE = os.path.join(BASE_DIR, "database.db")
+
 UPLOAD_FOLDER = "static/uploads"
 
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
@@ -23,7 +27,7 @@ def inicio():
         return redirect("/login")
 
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -77,7 +81,7 @@ def login():
         usuario = request.form["usuario"]
         clave = request.form["clave"]
 
-        db = sqlite3.connect("database.db")
+        db = sqlite3.connect(DATABASE)
         cursor = db.cursor()
 
         cursor.execute(
@@ -112,7 +116,7 @@ def logout():
 @app.route("/clientes", methods=["GET","POST"])
 def clientes():
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
     if request.method == "POST":
@@ -171,7 +175,7 @@ def clientes():
 @app.route("/trabajos", methods=["GET","POST"])
 def trabajos():
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -293,7 +297,7 @@ def actualizar_estado(id):
 
     nuevo_estado = request.form["estado"]
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
     cursor.execute("""
@@ -312,7 +316,7 @@ def actualizar_estado(id):
 @app.route("/orden/<int:id>")
 def orden(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -367,7 +371,7 @@ def orden(id):
 @app.route("/inventario", methods=["GET","POST"])
 def inventario():
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -453,7 +457,7 @@ def inventario():
 @app.route("/caja", methods=["GET","POST"])
 def caja():
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -533,7 +537,7 @@ def caja():
 @app.route("/editar_cliente/<int:id>", methods=["GET","POST"])
 def editar_cliente(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
     if request.method == "POST":
@@ -567,7 +571,7 @@ def editar_cliente(id):
 @app.route("/eliminar_cliente/<int:id>")
 def eliminar_cliente(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
     cursor.execute(
@@ -583,7 +587,7 @@ def eliminar_cliente(id):
 @app.route("/fotos/<int:id>", methods=["GET","POST"])
 def fotos(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -651,7 +655,7 @@ def actualizar_foto(id):
     imprimir = 1 if "imprimir" in request.form else 0
 
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -676,7 +680,7 @@ def actualizar_foto(id):
 @app.route("/orden_ticket/<int:id>")
 def orden_ticket(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
 
     cursor = db.cursor()
 
@@ -726,7 +730,7 @@ def orden_ticket(id):
 @app.route("/editar_inventario/<int:id>", methods=["GET","POST"])
 def editar_inventario(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -786,7 +790,7 @@ def editar_inventario(id):
 @app.route("/eliminar_inventario/<int:id>")
 def eliminar_inventario(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -819,7 +823,7 @@ def backup():
     # Copiar base de datos
 
     shutil.copy(
-        "database.db",
+        DATABASE,
         carpeta + "/database.db"
     )
 
@@ -898,7 +902,7 @@ def pagina_restaurar():
 @app.route("/reportes")
 def reportes():
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -998,7 +1002,7 @@ def reportes():
 @app.route("/eliminar_foto/<int:id>")
 def eliminar_foto(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -1040,7 +1044,7 @@ def eliminar_foto(id):
 @app.route("/configuracion", methods=["GET","POST"])
 def configuracion():
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
     if request.method == "POST":
@@ -1083,7 +1087,7 @@ def configuracion():
 @app.route("/usuarios", methods=["GET","POST"])
 def usuarios():
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -1126,7 +1130,7 @@ def usuarios():
 @app.route("/eliminar_usuario/<int:id>")
 def eliminar_usuario(id):
 
-    db = sqlite3.connect("database.db")
+    db = sqlite3.connect(DATABASE)
     cursor = db.cursor()
 
 
@@ -1159,7 +1163,7 @@ def crear_backup():
     destino = f"{carpeta}/backup_{fecha}.db"
 
     shutil.copy(
-        "database.db",
+        DATABASE,
         destino
     )
 
