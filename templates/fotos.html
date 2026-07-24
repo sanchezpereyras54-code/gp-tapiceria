@@ -1,0 +1,197 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<h2>
+
+<i class="bi bi-images text-primary"></i>
+
+Fotos del trabajo
+
+</h2>
+
+
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-body">
+
+
+<form method="POST" enctype="multipart/form-data">
+
+
+<label class="form-label">
+
+Seleccionar foto
+
+</label>
+
+
+<input
+
+class="form-control"
+
+type="file"
+
+name="imagen"
+
+required>
+
+
+<br>
+
+
+<label class="form-label">
+
+Descripción
+
+</label>
+
+
+<input
+
+class="form-control"
+
+name="descripcion"
+
+
+placeholder="Ej: Antes del trabajo">
+
+
+<br>
+
+
+<label class="form-label">
+
+Fecha
+
+</label>
+
+
+<input
+
+class="form-control"
+
+type="date"
+
+name="fecha">
+
+
+<br>
+
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-upload"></i>
+
+Subir foto
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="row">
+
+
+{% for foto in fotos %}
+
+
+<div class="col-md-4 mb-4">
+
+
+<div class="card shadow-sm">
+
+
+<img
+
+src="{{ url_for('static', filename='uploads/' + foto[2]) }}"
+
+class="card-img-top"
+
+
+>
+
+
+
+<div class="card-body">
+
+
+<p>
+
+{{foto[3]}}
+
+</p>
+
+
+
+<form method="POST" action="/actualizar_foto/{{foto[0]}}">
+
+
+<div class="form-check">
+
+
+<input
+
+class="form-check-input"
+
+type="checkbox"
+
+name="imprimir"
+
+onchange="this.form.submit()"
+
+{% if foto[4] == 1 %}
+
+checked
+
+{% endif %}
+
+>
+
+
+<label class="form-check-label">
+
+Imprimir en la orden
+
+</label>
+
+
+</div>
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+{% endfor %}
+
+
+</div>
+
+
+
+
+
+{% endblock %}

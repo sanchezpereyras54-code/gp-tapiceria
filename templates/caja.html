@@ -1,0 +1,436 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<h2 class="mb-4">
+
+<i class="bi bi-cash-stack text-primary"></i>
+
+Control de Caja
+
+</h2>
+
+
+
+
+<div class="row mb-4">
+
+
+<div class="col-md-4">
+
+<div class="card shadow-sm border-success">
+
+
+<div class="card-body">
+
+
+<h6>
+
+<i class="bi bi-arrow-down-circle text-success"></i>
+
+Ingresos
+
+</h6>
+
+
+<h3>
+
+RD$ {{ingresos}}
+
+</h3>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-4">
+
+
+<div class="card shadow-sm border-danger">
+
+
+<div class="card-body">
+
+
+<h6>
+
+<i class="bi bi-arrow-up-circle text-danger"></i>
+
+Gastos
+
+</h6>
+
+
+<h3>
+
+RD$ {{gastos}}
+
+</h3>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-4">
+
+
+<div class="card shadow-sm border-primary">
+
+
+<div class="card-body">
+
+
+<h6>
+
+<i class="bi bi-wallet2 text-primary"></i>
+
+Disponible
+
+</h6>
+
+
+<h3>
+
+RD$ {{balance}}
+
+</h3>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<div class="card shadow-sm mb-4">
+
+
+<div class="card-body">
+
+
+<h5>
+
+<i class="bi bi-plus-circle"></i>
+
+Registrar movimiento
+
+</h5>
+
+
+
+<form method="POST">
+
+
+<div class="row">
+
+
+<div class="col-md-3">
+
+
+<label class="form-label">
+
+Tipo
+
+</label>
+
+
+<select
+
+class="form-select"
+
+name="tipo">
+
+
+<option>
+
+Ingreso
+
+</option>
+
+
+<option>
+
+Gasto
+
+</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-3">
+
+
+<label class="form-label">
+
+Descripción
+
+</label>
+
+
+<input
+
+class="form-control"
+
+name="descripcion"
+
+placeholder="Ej: Compra de tela">
+
+
+</div>
+
+
+
+
+
+<div class="col-md-3">
+
+
+<label class="form-label">
+
+Monto
+
+</label>
+
+
+<input
+
+class="form-control"
+
+type="number"
+
+name="monto">
+
+
+</div>
+
+
+
+
+
+<div class="col-md-3">
+
+
+<label class="form-label">
+
+Fecha
+
+</label>
+
+
+<input
+
+class="form-control"
+
+type="date"
+
+name="fecha">
+
+
+</div>
+
+
+
+</div>
+
+
+
+<br>
+
+
+
+<button class="btn btn-primary">
+
+
+<i class="bi bi-save"></i>
+
+Guardar movimiento
+
+
+</button>
+
+
+
+</form>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card shadow-sm">
+
+
+<div class="card-body">
+
+
+<h5>
+
+<i class="bi bi-list"></i>
+
+Movimientos
+
+
+</h5>
+
+
+
+
+<table class="table table-hover">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>Tipo</th>
+
+<th>Descripción</th>
+
+<th>Monto</th>
+
+<th>Fecha</th>
+
+</tr>
+
+
+</thead>
+
+
+
+<tbody>
+
+
+
+{% for movimiento in caja %}
+
+
+<tr>
+
+
+
+<td>
+
+
+{% if movimiento[1]=="Ingreso" %}
+
+
+<span class="badge bg-success">
+
+Ingreso
+
+</span>
+
+
+{% else %}
+
+
+<span class="badge bg-danger">
+
+Gasto
+
+</span>
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+{{movimiento[2]}}
+
+</td>
+
+
+
+
+
+<td>
+
+RD$ {{movimiento[3]}}
+
+</td>
+
+
+
+
+
+<td>
+
+{{movimiento[4]}}
+
+</td>
+
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+{% endblock %}

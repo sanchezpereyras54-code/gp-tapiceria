@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<h2>
+
+<i class="bi bi-arrow-repeat"></i>
+
+Restaurar respaldo
+
+</h2>
+
+
+
+<div class="alert alert-warning">
+
+<i class="bi bi-exclamation-triangle"></i>
+
+Al restaurar se reemplazarán los datos actuales.
+
+</div>
+
+
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+
+<form method="POST" action="/restaurar">
+
+
+<label class="form-label">
+
+Seleccione respaldo
+
+</label>
+
+
+<select class="form-select" name="carpeta">
+
+
+{% for backup in backups %}
+
+<option value="{{backup}}">
+
+{{backup}}
+
+</option>
+
+{% endfor %}
+
+
+</select>
+
+
+<br>
+
+
+<button class="btn btn-danger">
+
+<i class="bi bi-arrow-repeat"></i>
+
+Restaurar
+
+</button>
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+{% endblock %}

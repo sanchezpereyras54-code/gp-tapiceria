@@ -1,0 +1,632 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+<i class="bi bi-file-earmark-text-fill text-primary"></i>
+
+Orden de Trabajo
+
+</h2>
+
+
+<button onclick="window.print()" class="btn btn-primary no-print">
+
+<i class="bi bi-printer-fill"></i>
+
+Imprimir Orden
+
+</button>
+
+
+</div>
+
+
+
+
+
+<div class="card shadow-sm">
+
+
+<div class="card-body p-4" id="orden">
+
+
+
+
+
+<div class="text-center mb-4">
+
+
+<img
+
+src="{{ url_for('static', filename='img/logo.png') }}"
+
+height="80"
+
+>
+
+
+<h3 class="mt-2">
+
+{{empresa[1]}}
+
+
+</h3>
+
+
+<p class="mb-1">
+
+Sistema de Gestión de Tapicería
+
+</p>
+
+
+<p class="mb-1">
+
+<i class="bi bi-telephone"></i>
+
+Tel: {{empresa[2]}}
+
+</p>
+
+
+<p class="mb-1">
+
+<i class="bi bi-geo-alt"></i>
+
+Dirección: {{empresa[4]}}
+
+</p>
+
+
+<p>
+
+<strong>
+Orden #{{trabajo[0]}}
+</strong>
+
+<p>
+
+Fecha:
+
+<span id="fechaOrden"></span>
+
+</p>
+
+
+<p class="text-muted">
+
+Orden de servicio de tapicería
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+<div class="row">
+
+
+
+<div class="col-md-6">
+
+
+<h5>
+
+<i class="bi bi-person-fill text-primary"></i>
+
+Cliente
+
+</h5>
+
+
+<p>
+
+<strong>Nombre:</strong>
+
+{{trabajo[1]}}
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+<div class="col-md-6">
+
+
+<h5>
+
+<i class="bi bi-calendar-event text-primary"></i>
+
+Entrega
+
+</h5>
+
+
+<p>
+
+<strong>Fecha:</strong>
+
+{{trabajo[8]}}
+
+</p>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<hr>
+
+
+
+
+
+<h5>
+
+<i class="bi bi-house-fill text-primary"></i>
+
+Información del mueble
+
+</h5>
+
+
+
+
+
+<table class="table table-bordered">
+
+
+<tr>
+
+<th width="30%">
+Mueble
+</th>
+
+
+<td>
+{{trabajo[2]}}
+</td>
+
+
+</tr>
+
+
+
+<tr>
+
+<th>
+Descripción
+</th>
+
+
+<td>
+
+{{trabajo[3]}}
+
+</td>
+
+
+</tr>
+
+
+
+
+
+<tr>
+
+<th>
+Tela / Color
+</th>
+
+
+<td>
+
+{{trabajo[4]}}
+
+</td>
+
+
+</tr>
+
+
+
+</table>
+
+
+
+
+
+
+
+<hr>
+
+
+
+
+
+<h5>
+
+<i class="bi bi-cash-stack text-primary"></i>
+
+Información económica
+
+</h5>
+
+
+
+
+<table class="table table-bordered">
+
+
+<tr>
+
+<th>
+Precio total
+</th>
+
+
+<td>
+
+RD$ {{trabajo[5]}}
+
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<th>
+Adelanto
+</th>
+
+
+<td>
+
+RD$ {{trabajo[6]}}
+
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<th>
+Balance pendiente
+</th>
+
+
+<td>
+
+<strong>
+
+RD$ {{trabajo[9]}}
+
+</strong>
+
+</td>
+
+
+</tr>
+
+
+
+
+<tr>
+
+<th>
+Estado
+</th>
+
+
+<td>
+
+
+<span class="badge bg-primary">
+
+{{trabajo[7]}}
+
+</span>
+
+
+</td>
+
+
+</tr>
+
+
+
+</table>
+
+<hr>
+
+
+<h5>
+
+<i class="bi bi-images text-primary"></i>
+
+Fotos del trabajo
+
+</h5>
+
+
+
+{% for foto in fotos %}
+
+<div class="col-md-4 mb-3">
+
+<img
+
+src="{{ url_for('static', filename='uploads/' + foto[2]) }}"
+
+class="img-fluid rounded shadow"
+
+style="max-height:200px;"
+
+>
+
+
+<p class="text-center">
+
+{{foto[3]}}
+
+</p>
+
+
+</div>
+
+{% endfor %}
+
+
+</div>
+
+
+
+<br><br>
+
+
+
+
+<br><br>
+
+
+<div class="row text-center">
+
+
+<div class="col-md-6">
+
+
+<div style="margin-top:50px;">
+
+<hr>
+
+<strong>
+Firma del Cliente
+</strong>
+
+<br>
+
+Nombre y aceptación del trabajo
+
+</div>
+
+
+</div>
+
+
+
+
+<div class="col-md-6">
+
+
+<div style="margin-top:50px;">
+
+<hr>
+
+<strong>
+Firma GP TAPICERÍA
+</strong>
+
+<br>
+
+Responsable del servicio
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<hr>
+
+
+
+<div class="mt-4">
+
+
+<h6>
+
+<i class="bi bi-info-circle"></i>
+
+<p style="font-size:13px;">
+{{empresa[7]}}
+</p>
+
+</h6>
+
+
+
+<p style="font-size:13px;">
+
+
+• El cliente confirma los datos del trabajo descrito en esta orden.
+
+<br>
+
+• Los cambios adicionales pueden generar costos adicionales.
+
+<br>
+
+• El tiempo de entrega puede variar según disponibilidad de materiales.
+
+<br>
+
+• El cliente debe revisar el trabajo al momento de la entrega.
+
+
+</p>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<style>
+
+
+@media print {
+
+
+body{
+
+background:white !important;
+
+}
+
+
+
+.sidebar,
+.topbar,
+.no-print{
+
+display:none !important;
+
+}
+
+
+
+.content{
+
+margin:0 !important;
+
+padding:0 !important;
+
+width:100%;
+
+}
+
+
+
+.card{
+
+border:none !important;
+
+box-shadow:none !important;
+
+}
+
+
+
+#orden{
+
+width:100%;
+
+padding:20px;
+
+}
+
+
+
+table{
+
+font-size:14px;
+
+}
+
+
+
+h3{
+
+font-size:22px;
+
+}
+
+
+
+img{
+
+max-width:150px;
+
+}
+
+
+
+}
+
+
+</style>
+
+
+<script>
+
+let fecha = new Date();
+
+
+document.getElementById("fechaOrden").innerHTML =
+fecha.toLocaleDateString("es-DO");
+
+
+</script>
+
+
+{% endblock %}

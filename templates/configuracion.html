@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+<i class="bi bi-gear-fill text-primary"></i>
+
+Configuración de la Empresa
+
+</h2>
+
+</div>
+
+<div class="card shadow">
+
+<div class="card-body">
+
+<form method="POST">
+
+<div class="row">
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Nombre de la empresa</label>
+
+<input
+class="form-control"
+name="nombre"
+value="{{empresa[1]}}">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Teléfono</label>
+
+<input
+class="form-control"
+name="telefono"
+value="{{empresa[2]}}">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">WhatsApp</label>
+
+<input
+class="form-control"
+name="whatsapp"
+value="{{empresa[3]}}">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">Correo</label>
+
+<input
+class="form-control"
+name="correo"
+value="{{empresa[5]}}">
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">Dirección</label>
+
+<input
+class="form-control"
+name="direccion"
+value="{{empresa[4]}}">
+
+</div>
+
+<div class="col-md-6 mb-3">
+
+<label class="form-label">RNC</label>
+
+<input
+class="form-control"
+name="rnc"
+value="{{empresa[6]}}">
+
+</div>
+
+<div class="col-md-12 mb-3">
+
+<label class="form-label">
+
+Mensaje al pie de las órdenes
+
+</label>
+
+<textarea
+class="form-control"
+rows="4"
+name="mensaje">{{empresa[7]}}</textarea>
+
+</div>
+
+</div>
+
+<hr>
+
+<button class="btn btn-success">
+
+<i class="bi bi-floppy-fill"></i>
+
+Guardar Configuración
+
+</button>
+
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}

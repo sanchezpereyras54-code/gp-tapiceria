@@ -1,0 +1,316 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<h2 class="mb-4">
+
+<i class="bi bi-speedometer2 text-primary"></i>
+
+Panel Principal
+
+</h2>
+
+
+
+<div class="row g-4">
+
+
+<!-- CLIENTES -->
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<div>
+
+<h6 class="text-muted">
+Clientes
+</h6>
+
+<h2>
+{{clientes}}
+</h2>
+
+</div>
+
+<i class="bi bi-people-fill fs-1 text-primary"></i>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<!-- TRABAJOS -->
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+<div class="d-flex justify-content-between align-items-center">
+
+<div>
+
+<h6 class="text-muted">
+Trabajos pendientes
+</h6>
+
+<h2>
+{{pendientes}}
+</h2>
+
+</div>
+
+
+<i class="bi bi-tools fs-1 text-warning"></i>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<!-- INGRESOS -->
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<div>
+
+<h6 class="text-muted">
+Ingresos
+</h6>
+
+<h3>
+RD$ {{ingresos}}
+</h3>
+
+
+</div>
+
+
+<i class="bi bi-cash-coin fs-1 text-success"></i>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- INVENTARIO -->
+
+<div class="col-md-3">
+
+<div class="card">
+
+<div class="card-body">
+
+
+<div class="d-flex justify-content-between align-items-center">
+
+
+<div>
+
+<h6 class="text-muted">
+Materiales
+</h6>
+
+<h2>
+{{materiales}}
+</h2>
+
+
+</div>
+
+
+<i class="bi bi-box-seam-fill fs-1 text-primary"></i>
+
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<!-- BIENVENIDA -->
+
+
+<div class="card mt-5">
+
+
+<div class="card-body">
+
+
+<h4>
+
+<i class="bi bi-person-circle text-primary"></i>
+
+Bienvenido, {{usuario}}
+
+</h4>
+
+
+<p class="text-muted">
+
+Desde este panel puedes administrar todo el funcionamiento de GP TAPICERÍA.
+
+</p>
+
+
+
+<div class="row mt-4">
+
+
+<div class="col-md-4">
+
+
+<div class="alert alert-primary">
+
+<i class="bi bi-people"></i>
+
+Gestiona tus clientes registrados.
+
+</div>
+
+
+</div>
+
+
+
+<div class="col-md-4">
+
+
+<div class="alert alert-warning">
+
+<i class="bi bi-tools"></i>
+
+Controla los trabajos pendientes.
+
+</div>
+
+
+</div>
+
+
+
+<div class="col-md-4">
+
+
+<div class="alert alert-success">
+
+<i class="bi bi-cash"></i>
+
+Revisa ingresos y caja.
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+</div>
+
+
+</div>
+
+
+<div class="card shadow-sm mt-4">
+
+<div class="card-body">
+
+
+<h5>
+
+<i class="bi bi-cloud-arrow-down"></i>
+
+Respaldo del sistema
+
+</h5>
+
+
+<p>
+
+Guarda una copia de clientes, trabajos, caja, inventario y fotos.
+
+</p>
+
+
+
+<a
+
+href="/backup"
+
+class="btn btn-success">
+
+
+<i class="bi bi-download"></i>
+
+Crear respaldo
+
+
+</a>
+
+
+</div>
+
+</div>
+
+<br><br>
+
+<a href="/restaurar" class="btn btn-warning">
+
+<i class="bi bi-arrow-repeat"></i>
+
+Restaurar respaldo
+
+</a>
+
+{% endblock %}

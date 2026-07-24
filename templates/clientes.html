@@ -1,0 +1,323 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+<i class="bi bi-people-fill text-primary"></i>
+
+Clientes
+
+</h2>
+
+</div>
+
+
+
+<!-- NUEVO CLIENTE -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-body">
+
+
+<h5 class="mb-3">
+
+<i class="bi bi-person-plus-fill text-primary"></i>
+
+Nuevo Cliente
+
+</h5>
+
+
+
+<form method="POST">
+
+
+<div class="row">
+
+
+<div class="col-md-4">
+
+<label class="form-label">
+Nombre
+</label>
+
+<input
+class="form-control"
+name="nombre"
+required>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<label class="form-label">
+Teléfono
+</label>
+
+<input
+class="form-control"
+name="telefono">
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<label class="form-label">
+Dirección
+</label>
+
+<input
+class="form-control"
+name="direccion">
+
+</div>
+
+
+</div>
+
+
+
+<br>
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-save"></i>
+
+Guardar Cliente
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- LISTA CLIENTES -->
+
+
+<div class="card shadow-sm">
+
+
+<div class="card-body">
+
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+
+
+<h5>
+
+<i class="bi bi-list-ul"></i>
+
+Clientes registrados
+
+</h5>
+
+
+
+</div>
+
+
+
+<form method="GET">
+
+
+<div class="input-group mb-3">
+
+
+<input
+
+class="form-control"
+
+name="buscar"
+
+placeholder="Buscar por nombre o teléfono..."
+
+>
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-search"></i>
+
+Buscar
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+
+
+
+<div class="table-responsive">
+
+
+<table class="table table-hover align-middle">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>ID</th>
+
+<th>Nombre</th>
+
+<th>Teléfono</th>
+
+<th>Dirección</th>
+
+<th class="text-center">
+Acciones
+</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+{% for cliente in clientes %}
+
+
+
+<tr>
+
+
+<td>
+{{cliente[0]}}
+</td>
+
+
+
+<td>
+
+<i class="bi bi-person text-primary"></i>
+
+{{cliente[1]}}
+
+</td>
+
+
+
+<td>
+
+<i class="bi bi-telephone"></i>
+
+{{cliente[2]}}
+
+</td>
+
+
+
+
+<td>
+
+<i class="bi bi-geo-alt"></i>
+
+{{cliente[3]}}
+
+</td>
+
+
+
+
+<td class="text-center">
+
+
+<a
+
+class="btn btn-warning btn-sm"
+
+href="/editar_cliente/{{cliente[0]}}"
+
+title="Editar cliente"
+
+>
+
+<i class="bi bi-pencil-square"></i>
+
+</a>
+
+
+
+
+<a
+
+class="btn btn-danger btn-sm"
+
+href="/eliminar_cliente/{{cliente[0]}}"
+
+onclick="return confirm('¿Eliminar cliente?')"
+
+title="Eliminar cliente"
+
+>
+
+<i class="bi bi-trash3"></i>
+
+</a>
+
+
+
+</td>
+
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+{% endblock %}

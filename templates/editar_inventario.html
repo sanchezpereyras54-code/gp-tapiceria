@@ -1,0 +1,130 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<h2>
+
+<i class="bi bi-pencil-square"></i>
+
+Editar Material
+
+</h2>
+
+
+
+<div class="card shadow-sm">
+
+
+<div class="card-body">
+
+
+<form method="POST">
+
+
+<label class="form-label">
+Material
+</label>
+
+<input
+
+class="form-control"
+
+name="material"
+
+value="{{item[1]}}">
+
+
+<br>
+
+
+<label class="form-label">
+Categoría
+</label>
+
+<input
+
+class="form-control"
+
+name="categoria"
+
+value="{{item[2]}}">
+
+
+<br>
+
+
+<label class="form-label">
+Cantidad
+</label>
+
+<input
+
+class="form-control"
+
+name="cantidad"
+
+value="{{item[3]}}">
+
+
+<br>
+
+
+<label class="form-label">
+Unidad
+</label>
+
+<input
+
+class="form-control"
+
+name="unidad"
+
+value="{{item[4]}}">
+
+
+<br>
+
+
+<label class="form-label">
+Precio
+</label>
+
+<input
+
+class="form-control"
+
+name="precio"
+
+value="{{item[5]}}">
+
+
+<br>
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-save"></i>
+
+Guardar Cambios
+
+</button>
+
+
+<a href="/inventario" class="btn btn-secondary">
+
+Cancelar
+
+</a>
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+{% endblock %}

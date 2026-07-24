@@ -1,0 +1,669 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+<h2>
+
+<i class="bi bi-tools text-primary"></i>
+
+Gestión de Trabajos
+
+</h2>
+
+</div>
+
+
+
+
+<!-- NUEVO TRABAJO -->
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-body">
+
+
+<h5 class="mb-4">
+
+<i class="bi bi-plus-circle text-primary"></i>
+
+Nuevo Trabajo
+
+</h5>
+
+
+
+<form method="POST">
+
+
+<div class="row g-3">
+
+
+
+<div class="col-md-4">
+
+<label class="form-label">
+Cliente
+</label>
+
+
+<select 
+class="form-select"
+name="cliente_id"
+required>
+
+
+{% for cliente in clientes %}
+
+
+<option value="{{cliente[0]}}">
+
+{{cliente[1]}}
+
+</option>
+
+
+{% endfor %}
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-4">
+
+<label class="form-label">
+Mueble
+</label>
+
+
+<input
+
+class="form-control"
+
+name="mueble"
+
+placeholder="Ej: Sofá 3 piezas"
+
+required
+
+>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-4">
+
+
+<label class="form-label">
+Tela / Color
+</label>
+
+
+<input
+
+class="form-control"
+
+name="tela"
+
+placeholder="Ej: Gris, cuero, lino"
+
+>
+
+
+</div>
+
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+
+<label class="form-label">
+
+Descripción del trabajo
+
+</label>
+
+
+<textarea
+
+class="form-control"
+
+name="descripcion"
+
+rows="3"
+
+placeholder="Detalles del trabajo realizado..."
+
+></textarea>
+
+
+
+
+
+<br>
+
+
+
+
+<div class="row g-3">
+
+
+
+<div class="col-md-3">
+
+<label class="form-label">
+Precio total
+</label>
+
+
+<div class="input-group">
+
+<span class="input-group-text">
+RD$
+</span>
+
+
+<input
+
+class="form-control"
+
+type="number"
+
+name="precio"
+
+required
+
+>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-3">
+
+
+<label class="form-label">
+Adelanto
+</label>
+
+
+<div class="input-group">
+
+<span class="input-group-text">
+RD$
+</span>
+
+
+<input
+
+class="form-control"
+
+type="number"
+
+name="adelanto"
+
+required
+
+>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="col-md-3">
+
+
+<label class="form-label">
+Estado
+</label>
+
+
+<select
+
+class="form-select"
+
+name="estado"
+
+
+>
+
+
+<option>Pendiente</option>
+
+<option>En proceso</option>
+
+<option>Terminado</option>
+
+<option>Entregado</option>
+
+
+</select>
+
+
+</div>
+
+
+
+
+
+<div class="col-md-3">
+
+
+<label class="form-label">
+Fecha entrega
+</label>
+
+
+<input
+
+class="form-control"
+
+type="date"
+
+name="fecha_entrega"
+
+>
+
+
+</div>
+
+
+
+
+</div>
+
+
+
+
+
+<br>
+
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-save"></i>
+
+Guardar Trabajo
+
+</button>
+
+
+
+</form>
+
+
+</div>
+
+</div>
+
+
+
+
+
+<!-- LISTADO -->
+
+
+<div class="card shadow-sm">
+
+
+<div class="card-body">
+
+
+<div class="d-flex justify-content-between mb-3">
+
+
+<h5>
+
+<i class="bi bi-list-check"></i>
+
+Trabajos registrados
+
+</h5>
+
+
+</div>
+
+
+
+
+<form method="GET">
+
+
+<div class="input-group mb-3">
+
+
+<input
+
+class="form-control"
+
+name="buscar"
+
+placeholder="Buscar cliente o mueble..."
+
+>
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-search"></i>
+
+Buscar
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+
+
+
+
+<div class="table-responsive">
+
+
+<table class="table table-hover align-middle">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+
+<th>Cliente</th>
+
+<th>Mueble</th>
+
+<th>Estado</th>
+
+<th>Balance</th>
+
+<th>Entrega</th>
+
+<th>Acciones</th>
+
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+{% for trabajo in trabajos %}
+
+
+
+<tr>
+
+
+
+<td>
+
+<i class="bi bi-person"></i>
+
+{{trabajo[1]}}
+
+</td>
+
+
+
+
+<td>
+
+<i class="bi bi-house"></i>
+
+{{trabajo[2]}}
+
+</td>
+
+
+
+
+
+<td>
+
+
+{% if trabajo[7] == "Entregado" %}
+
+
+<span class="badge bg-success">
+
+{{trabajo[7]}}
+
+</span>
+
+
+
+{% elif trabajo[7] == "En proceso" %}
+
+
+<span class="badge bg-warning text-dark">
+
+{{trabajo[7]}}
+
+</span>
+
+
+
+
+{% elif trabajo[7] == "Pendiente" %}
+
+
+<span class="badge bg-danger">
+
+{{trabajo[7]}}
+
+</span>
+
+
+
+
+{% else %}
+
+
+<span class="badge bg-info">
+
+{{trabajo[7]}}
+
+</span>
+
+
+{% endif %}
+
+
+
+</td>
+
+
+
+
+
+<td>
+
+<strong>
+
+RD$ {{trabajo[9]}}
+
+</strong>
+
+
+</td>
+
+
+
+
+
+<td>
+
+{{trabajo[8]}}
+
+</td>
+
+
+
+
+
+<td>
+
+
+<a
+class="btn btn-primary btn-sm"
+href="/orden/{{trabajo[0]}}"
+title="Orden de trabajo">
+
+<i class="bi bi-file-earmark-text"></i>
+
+</a>
+
+
+<a
+class="btn btn-dark btn-sm"
+href="/orden_ticket/{{trabajo[0]}}"
+title="Ticket térmico">
+
+<i class="bi bi-receipt"></i>
+
+</a>
+
+
+
+<a
+class="btn btn-success btn-sm"
+href="/fotos/{{trabajo[0]}}"
+title="Fotos del trabajo">
+
+<i class="bi bi-images"></i>
+
+</a>
+
+
+
+<form
+
+method="POST"
+
+action="/actualizar_estado/{{trabajo[0]}}"
+
+style="display:inline;"
+
+>
+
+
+<select
+
+name="estado"
+
+class="form-select form-select-sm d-inline"
+
+style="width:auto"
+
+>
+
+
+<option>Pendiente</option>
+
+<option>En proceso</option>
+
+<option>Terminado</option>
+
+<option>Entregado</option>
+
+
+</select>
+
+
+
+<button
+
+class="btn btn-success btn-sm"
+
+title="Actualizar estado"
+
+>
+
+
+<i class="bi bi-check-lg"></i>
+
+
+</button>
+
+
+
+</form>
+
+
+
+</td>
+
+
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+
+{% endblock %}

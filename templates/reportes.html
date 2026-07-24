@@ -1,0 +1,192 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<h2 class="mb-4">
+
+<i class="bi bi-bar-chart"></i>
+
+Reportes
+
+</h2>
+
+
+
+<div class="row">
+
+
+<div class="col-md-3 mb-3">
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<h6>
+<i class="bi bi-tools"></i>
+Trabajos
+</h6>
+
+<h2>
+{{total_trabajos}}
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+<div class="col-md-3 mb-3">
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<h6>
+<i class="bi bi-hourglass-split"></i>
+Pendientes
+</h6>
+
+<h2>
+{{pendientes}}
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="col-md-3 mb-3">
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<h6>
+<i class="bi bi-currency-dollar"></i>
+Ventas
+</h6>
+
+<h2>
+RD$ {{vendido}}
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="col-md-3 mb-3">
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+<h6>
+<i class="bi bi-wallet"></i>
+Balance Caja
+</h6>
+
+<h2>
+RD$ {{balance}}
+</h2>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="card shadow-sm mt-4">
+
+<div class="card-body">
+
+
+<h5>
+Resumen financiero
+</h5>
+
+
+<table class="table">
+
+
+<tr>
+
+<td>Total cobrado</td>
+
+<td>
+RD$ {{cobrado}}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>Pendiente por cobrar</td>
+
+<td>
+RD$ {{pendiente_cobro}}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>Ingresos caja</td>
+
+<td>
+RD$ {{ingresos}}
+</td>
+
+</tr>
+
+
+
+<tr>
+
+<td>Gastos caja</td>
+
+<td>
+RD$ {{gastos}}
+</td>
+
+</tr>
+
+
+</table>
+
+
+
+</div>
+
+</div>
+
+
+
+{% endblock %}

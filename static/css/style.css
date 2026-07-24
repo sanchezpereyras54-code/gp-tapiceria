@@ -1,0 +1,218 @@
+/*====================================
+      GP TAPICERÍA v2.0
+=====================================*/
+
+:root{
+    --primary:#2563eb;
+    --primary-dark:#1e40af;
+    --sidebar:#1e293b;
+    --sidebar-hover:#334155;
+    --success:#16a34a;
+    --warning:#f59e0b;
+    --danger:#dc2626;
+    --light:#f1f5f9;
+    --white:#ffffff;
+    --border:#e2e8f0;
+    --text:#334155;
+    --shadow:0 8px 20px rgba(0,0,0,.08);
+    --radius:16px;
+}
+
+body{
+    margin:0;
+    background:var(--light);
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
+    color:var(--text);
+}
+
+/*==========================
+SIDEBAR
+==========================*/
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:var(--sidebar);
+    color:#fff;
+    box-shadow:var(--shadow);
+    overflow-y:auto;
+}
+
+.logo-area{
+    padding:25px;
+    text-align:center;
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
+
+.logo-area img{
+    width:90px;
+}
+
+.logo-area h4{
+    margin-top:15px;
+    font-weight:700;
+}
+
+.sidebar a{
+    display:block;
+    padding:14px 22px;
+    color:#fff;
+    text-decoration:none;
+    transition:.25s;
+}
+
+.sidebar a:hover{
+    background:var(--sidebar-hover);
+}
+
+.sidebar i{
+    width:24px;
+}
+
+/*==========================
+CONTENIDO
+==========================*/
+
+.content{
+    margin-left:250px;
+    padding:30px;
+}
+
+.topbar{
+    background:#fff;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:18px 25px;
+    margin-bottom:25px;
+}
+
+.card{
+    border:none;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+}
+
+.card-header{
+    background:#fff;
+    border-bottom:1px solid var(--border);
+    font-weight:600;
+}
+
+/*==========================
+BOTONES
+==========================*/
+
+.btn{
+    border-radius:10px;
+}
+
+.btn-primary{
+    background:var(--primary);
+    border:none;
+}
+
+.btn-primary:hover{
+    background:var(--primary-dark);
+}
+
+/*==========================
+FORMULARIOS
+==========================*/
+
+.form-control,
+.form-select{
+    border-radius:10px;
+}
+
+.form-control:focus,
+.form-select:focus{
+    border-color:var(--primary);
+    box-shadow:0 0 0 .2rem rgba(37,99,235,.15);
+}
+
+/*==========================
+TABLAS
+==========================*/
+
+.table{
+    background:#fff;
+    border-radius:var(--radius);
+    overflow:hidden;
+}
+
+.table thead{
+    background:var(--primary);
+    color:#fff;
+}
+
+.table-hover tbody tr:hover{
+    background:#f8fafc;
+}
+
+/*==========================
+BADGES
+==========================*/
+
+.badge{
+    padding:8px 12px;
+    font-size:.8rem;
+}
+
+/*==========================
+RESPONSIVE
+==========================*/
+
+@media(max-width:992px){
+
+.sidebar{
+    width:80px;
+}
+
+.sidebar span{
+    display:none;
+}
+
+.logo-area h4{
+    display:none;
+}
+
+.content{
+    margin-left:80px;
+}
+
+}
+
+
+
+nav {
+    position: relative;
+    z-index: 1000;
+}
+
+nav a {
+    display: flex;
+    position: relative;
+    z-index: 1001;
+}
+
+.usuario-box {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 250px;
+    padding: 15px;
+    background: #1e293b;
+    text-align: center;
+}
+
+
+.usuario-box hr {
+    border-color: rgba(255,255,255,.2);
+}
+
+.sidebar nav {
+    padding-bottom: 200px;
+}

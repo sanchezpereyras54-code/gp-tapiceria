@@ -1,0 +1,391 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+
+<h2 class="mb-4">
+
+<i class="bi bi-box-seam text-primary"></i>
+
+Inventario
+
+</h2>
+
+
+
+<div class="alert alert-info">
+
+<i class="bi bi-info-circle"></i>
+
+Los materiales con cantidad igual o menor a 5 aparecen como inventario bajo.
+
+</div>
+
+
+
+<div class="card shadow-sm mb-4">
+
+
+<div class="card-body">
+
+
+<h5>
+
+<i class="bi bi-plus-circle"></i>
+
+Nuevo Material
+
+</h5>
+
+
+
+<form method="POST">
+
+
+<div class="row">
+
+
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Material
+
+</label>
+
+<input
+
+class="form-control"
+
+name="material"
+
+placeholder="Ej: Tela gris">
+
+</div>
+
+
+
+
+<div class="col-md-3">
+
+<label class="form-label">
+
+Categoría
+
+</label>
+
+
+<input
+
+class="form-control"
+
+name="categoria"
+
+placeholder="Tela, espuma, madera">
+
+</div>
+
+
+
+
+
+<div class="col-md-2">
+
+<label class="form-label">
+
+Cantidad
+
+</label>
+
+
+<input
+
+class="form-control"
+
+type="number"
+
+name="cantidad">
+
+</div>
+
+
+
+
+
+<div class="col-md-2">
+
+<label class="form-label">
+
+Unidad
+
+</label>
+
+
+<input
+
+class="form-control"
+
+name="unidad"
+
+placeholder="yardas">
+
+</div>
+
+
+
+
+
+<div class="col-md-2">
+
+<label class="form-label">
+
+Precio
+
+</label>
+
+
+<input
+
+class="form-control"
+
+type="number"
+
+name="precio">
+
+</div>
+
+
+</div>
+
+
+
+<br>
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-save"></i>
+
+Guardar Material
+
+</button>
+
+
+</form>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+
+
+<div class="card shadow-sm">
+
+
+<div class="card-body">
+
+
+<form method="GET">
+
+
+<div class="input-group mb-3">
+
+
+<input
+
+class="form-control"
+
+name="buscar"
+
+placeholder="Buscar material">
+
+
+<button class="btn btn-primary">
+
+<i class="bi bi-search"></i>
+
+Buscar
+
+</button>
+
+
+</div>
+
+
+</form>
+
+
+
+
+
+<table class="table table-hover">
+
+
+<thead class="table-dark">
+
+
+<tr>
+
+<th>Material</th>
+
+<th>Categoría</th>
+
+<th>Cantidad</th>
+
+<th>Unidad</th>
+
+<th>Precio</th>
+
+<th>Acciones</th>
+
+</tr>
+
+
+</thead>
+
+
+
+
+<tbody>
+
+
+
+{% for item in inventario %}
+
+
+<tr>
+
+
+<td>
+
+{{item[1]}}
+
+</td>
+
+
+
+<td>
+
+{{item[2]}}
+
+</td>
+
+
+
+<td>
+
+
+{% if item[3]|float <= 5 %}
+
+
+<span class="badge bg-warning text-dark">
+
+<i class="bi bi-exclamation-triangle"></i>
+
+{{item[3]}}
+
+Bajo
+
+</span>
+
+
+{% else %}
+
+
+<span class="badge bg-success">
+
+<i class="bi bi-check-circle"></i>
+
+{{item[3]}}
+
+</span>
+
+
+{% endif %}
+
+
+</td>
+
+
+
+<td>
+
+{{item[4]}}
+
+</td>
+
+
+
+<td>
+
+RD$ {{item[5]}}
+
+</td>
+
+<td>
+
+
+<a
+
+class="btn btn-warning btn-sm"
+
+href="/editar_inventario/{{item[0]}}">
+
+
+<i class="bi bi-pencil"></i>
+
+
+</a>
+
+
+
+
+<a
+
+class="btn btn-danger btn-sm"
+
+href="/eliminar_inventario/{{item[0]}}"
+
+onclick="return confirm('¿Eliminar material?')">
+
+
+<i class="bi bi-trash"></i>
+
+
+</a>
+
+
+</td>
+
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+
+</div>
+
+
+
+
+{% endblock %}

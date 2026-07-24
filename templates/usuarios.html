@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+
+<div class="container-fluid">
+
+<h2 class="mb-4">
+    <i class="bi bi-person-gear"></i>
+    Usuarios
+</h2>
+
+
+<div class="card shadow-sm mb-4">
+
+<div class="card-body">
+
+<h5>
+<i class="bi bi-person-plus"></i>
+Nuevo usuario
+</h5>
+
+
+<form method="POST">
+
+<div class="row">
+
+
+<div class="col-md-4">
+
+<label class="form-label">
+Usuario
+</label>
+
+<input 
+class="form-control"
+name="usuario"
+required>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<label class="form-label">
+Contraseña
+</label>
+
+<input 
+class="form-control"
+type="password"
+name="clave"
+required>
+
+</div>
+
+
+
+<div class="col-md-3">
+
+<label class="form-label">
+Rol
+</label>
+
+<select class="form-select" name="rol">
+
+<option value="Administrador">
+Administrador
+</option>
+
+<option value="Empleado">
+Empleado
+</option>
+
+</select>
+
+</div>
+
+
+
+<div class="col-md-1">
+
+<label class="form-label">
+&nbsp;
+</label>
+
+<button class="btn btn-primary w-100">
+
+<i class="bi bi-save"></i>
+
+</button>
+
+</div>
+
+
+</div>
+
+</form>
+
+
+</div>
+
+</div>
+
+
+
+
+<div class="card shadow-sm">
+
+<div class="card-body">
+
+
+<table class="table table-hover">
+
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Usuario</th>
+
+<th>Rol</th>
+
+<th>Acción</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+
+{% for usuario in usuarios %}
+
+
+<tr>
+
+<td>
+{{ usuario[0] }}
+</td>
+
+
+<td>
+{{ usuario[1] }}
+</td>
+
+
+<td>
+
+{% if usuario[2] == "Administrador" %}
+
+<span class="badge bg-success">
+Administrador
+</span>
+
+{% else %}
+
+<span class="badge bg-secondary">
+Empleado
+</span>
+
+{% endif %}
+
+</td>
+
+
+<td>
+
+<a 
+href="/eliminar_usuario/{{ usuario[0] }}"
+class="btn btn-danger btn-sm"
+onclick="return confirm('¿Eliminar usuario?')">
+
+<i class="bi bi-trash"></i>
+
+</a>
+
+</td>
+
+
+</tr>
+
+
+{% endfor %}
+
+
+</tbody>
+
+
+</table>
+
+
+</div>
+
+</div>
+
+
+</div>
+
+
+{% endblock %}
